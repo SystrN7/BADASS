@@ -12,6 +12,12 @@ The ASN is delivered to the different entities by a RIR (Regional Internet Regis
 
 The RIRs get their IP addresses and AS numbers from IANA (Internet Assigned Numbers Authority) which is in charge of their distribution at the global level.
 
+### IGP
+Routing inside an autonomous system is called Interior Gateway Protocol (IGP). The most common IGPs are RIP, OSPF, IS-IS, and EIGRP.
+
+### EGP
+Routing between autonomous systems is called Exterior Gateway Protocol (EGP). The most common EGP is BGP.
+
 ## Protocol
 
 ### RIP
@@ -27,7 +33,6 @@ It accomplishes this by determining the best route for data through a Packet-swi
 ### BGP
 Border Gateway Protocol (BGP) is a standardized protocol designed to exchange routing and reachability information among autonomous systems (AS) on the Internet.
 
-
 ### EVPN
 EVPN is a new Ethernet VPN standard that is designed to provide a scalable and efficient way to extend Layer 2* networks across multiple sites.
 
@@ -36,10 +41,10 @@ EVPN is a new Ethernet VPN standard that is designed to provide a scalable and e
 ### VXLAN
 Virtual Extensible LAN (VXLAN) is a network virtualization technology that attempts to address the scalability problems associated with large cloud computing deployments.
 
-### 
-
 ### Zebra
- ?? is the main part 
+Zebra Protocol is used by protocol daemons to communicate with the zebra daemon.
+
+Each protocol daemon may request and send information to and from the zebra daemon such as interface states, routing state, nexthop-validation, and so on. Protocol daemons may also install routes with zebra. The zebra daemon manages which route is installed into the forwarding table with the kernel.
 
 ## Tools
 
