@@ -31,7 +31,19 @@ Intermediate System to Intermediate System (IS-IS) is a routing protocol designe
 It accomplishes this by determining the best route for data through a Packet-switched network. This is done by using a routing metric to assign a cost to each possible route. The route with the lowest total cost is then chosen to route packets.
 
 ### BGP
+
 Border Gateway Protocol (BGP) is a standardized protocol designed to exchange routing and reachability information among autonomous systems (AS) on the Internet.
+
+
+To reduce the number of connection between routers the gbp router can be aggregated with a "central" router with the responsibility to redistribute the routes to the other routers. This "central" router is generally called route reflector. for redundancy, it is possible to have multiple route reflectors. A network with a route reflector is called a confederation.
+[source](https://www.nongnu.org/quagga/docs/docs-multi/Route-Server.html#Route-Server).
+
+The bgp protocols open port 179. other routers can connect to this port to exchange routes.
+
+the bgp have long time of convergence. the convergence is the time to update the routing table after a change in the network topology.
+
+
+
 
 ### EVPN
 EVPN is a new Ethernet VPN standard that is designed to provide a scalable and efficient way to extend Layer 2* networks across multiple sites.
