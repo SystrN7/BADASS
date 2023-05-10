@@ -30,3 +30,8 @@
 Quagga all usefull links about quagga
  - [Quaggua routing Tutorial](https://www.linux.com/topic/networking/dynamic-linux-routing-quagga/)
  - [How to build a network of Linux routers using quagga](https://www.brianlinkletter.com/2016/06/how-to-build-a-network-of-linux-routers-using-quagga/)
+ - [Setup](https://openmaniak.com/fr/quagga_case4.php)
+
+## Configure VXLAN
+ - [Nvidia](https://enterprise-support.nvidia.com/s/article/howto-configure-vxlan-for-connectx-3-pro--linux-bridge-x)
+ - [RedHat](https://vincent.bernat.ch/en/blog/2017-vxlan-linux)

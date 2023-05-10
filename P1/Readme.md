@@ -31,8 +31,14 @@ Is just use the alpine base image with busybox installed.
 
 ## Start Container in GNS3
 
+Run GNS3
+
+Create new project
+
+`File > new`
+
+Add docker container Host / Router
 
 
-
-connect to the router and host to check if is working.
+Connect to the router and host to check if is working.
 
