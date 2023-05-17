@@ -43,8 +43,6 @@ The bgp protocols open port 179. other routers can connect to this port to excha
 the bgp have long time of convergence. the convergence is the time to update the routing table after a change in the network topology.
 
 
-
-
 ### EVPN
 EVPN is a new Ethernet VPN standard that is designed to provide a scalable and efficient way to extend Layer 2* networks across multiple sites.
 
@@ -53,7 +51,10 @@ EVPN is a new Ethernet VPN standard that is designed to provide a scalable and e
 ### VXLAN
 Virtual Extensible LAN (VXLAN) is a network virtualization technology that attempts to address the scalability problems associated with large cloud computing deployments.
 
-### Zebra
+### VNI (VXLAN Network Identifier)
+VXLAN Network Identifier (VNI) is a 24-bit segment ID that is used to identify VXLAN segments. The VNI is similar to a VLAN ID in that it is used to isolate traffic from different segments. The VNI is also known as the VXLAN segment ID.
+
+### Zebra (protocol)
 Zebra Protocol is used by protocol daemons to communicate with the zebra daemon.
 
 Each protocol daemon may request and send information to and from the zebra daemon such as interface states, routing state, nexthop-validation, and so on. Protocol daemons may also install routes with zebra. The zebra daemon manages which route is installed into the forwarding table with the kernel.
@@ -63,7 +64,7 @@ Each protocol daemon may request and send information to and from the zebra daem
 ### GNS3
 GNS3 is a graphical network simulator that allows you to design complex network topologies and emulate them using virtual machines/docker container.
 
-### Zebra
+### Zebra (software)
 Zebra is a routing software suite that includes implementations of the BGP, OSPF, RIP, and IS-IS routing protocols.
 Zebra is dead project.
 
