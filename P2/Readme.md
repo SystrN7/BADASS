@@ -41,6 +41,7 @@ we need to give a default gateway to the host with the command :
 ```bash
 ip -4 link add vxlan10 type vxlan \
   id 10 \
+  local <source_router_ip> \
   remote <destination_router_ip> \
   dstport 4789 \
   dev eth0 \
@@ -51,9 +52,9 @@ ip -4 link add vxlan10 type vxlan \
 `-4` - Option to specify the internet protocol version in this case IPv4
 `link ` - Subcommand to manage the network device.
 `id ID` - specifies the VXLAN Network Identifier (VNI) to use.
-`remote IPADDR` - specifies the remote VXLAN tunnel endpoint IP address to use for outgoing packets.
-`group IPADDR` - specifies the multicast IP address to join.  This parameter cannot be specified with the remote parameter. ?? I don't understand this parameter (but is important fo the multicast)
 `local IPADDR` - specifies the source IP address to use in outgoing packets.
+`remote IPADDR` - specifies the remote VXLAN tunnel endpoint IP address to use for outgoing packets.
+`group IPADDR` - specifies the multicast IP address to join.  This parameter cannot be specified with the remote parameter. is important fo the multicast
 `dstport PORT` - specifies the UDP destination port to use for outgoing packets. The standard port for VXLAN is 4789.
 `ttl TTL` - specifies the TTL* to use for outgoing packets.
 `dev NAME` - specifies the physical device to use for tunnel endpoint communication.
@@ -62,19 +63,27 @@ ip -4 link add vxlan10 type vxlan \
 
 We need to create a bridge to connect the VXLAN to the physical network device.
 
+with ip command
 ```bash
-ip link add br0 type bridge # create the bridge with the name br0
+ip link add name br0 type bridge # create the bridge with the name br0
 ip link set dev br0 up # start the bridge
 ip link set dev vxlan10 up # start the vxlan
 ip link set vxlan10 master br0 # connect the vxlan to the bridge
-ip link set eth0 master br0 # connect the physical device to the bridge
+ip link set eth1 master br0 # connect the physical device to the bridge
+```
+with brctl command
+```bash
+ip link add br0 type bridge # create the bridge with the name br0
+brctl addbr br0 # create the bridge with the name br0
+brctl addif br0 vxlan10 # connect the vxlan to the bridge
+brctl addif br0 eth1 # connect the physical device to the bridge
 ```
 
 ### VXLAN for router-1
 
 Create the VXLAN
 ```bash
-ip -4 link add vxlan10 type vxlan id 10 remote 20.1.1.2 dstport 4789 dev eth0 ttl auto
+ip -4 link add name vxlan10 type vxlan id 10 remote 20.1.1.2 local 20.1.1.1 dstport 4789 ttl auto dev eth0
 ```
 
 Create the bridge and connect the VXLAN and the physical device with command above.
@@ -83,7 +92,7 @@ Create the bridge and connect the VXLAN and the physical device with command abo
 
 Create the VXLAN
 ```bash
-ip -4 link add vxlan10 type vxlan id 10 remote 20.1.1.1 dstport 4789 dev eth0 ttl auto
+ip -4 link add name vxlan10 type vxlan id 10 remote 20.1.1.1 local 20.1.1.2 dstport 4789 ttl auto dev eth0
 ```
 Create the bridge and connect the VXLAN and the physical device with command above.
 
@@ -115,4 +124,4 @@ Create the bridge and connect the VXLAN and the physical device with command abo
 
 ## Souces
 - [Youtube VXLAN (Network Direction)](https://www.youtube.com/watch?v=YNqKDI_bnPM&list=PLDQaRcbiSnqFe6pyaSy-Hwj8XRFPgZ5h8)
-- [A blog avilable in french/english](https://vincent.bernat.ch/en/blogn)
+- [A blog avilable in french/english is for ](https://vincent.bernat.ch/en/blogn)
