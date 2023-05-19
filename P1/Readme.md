@@ -43,6 +43,16 @@ Install GNS3 (Client/Server)
 sudo dnf -y install gns3-server gns3-gui
 ```
 
+Install Dynamips
+```bash
+git clone https://github.com/GNS3/dynamips
+cd dynamips
+mkdir build
+cd build
+cmake ..
+sudo make install
+```
+
 Setup docker
 ```bash
 sudo usermod -a -G docker $(whoami)
@@ -66,14 +76,14 @@ And give the name of the services to watchfrr to automatically restart the servi
 FUCK the alternative we use the deprecated image.
 
 You need to build the image with this command:
-`docker build -t routeur_fgalaup`
+`docker build -t routeur_fgalaup .`
 
 ### Container 2: Host
 
 Is just use the alpine base image with busybox installed.
 
 You need to build the image with this command:
-`docker build -t host_fgalaup`
+`docker build -t host_fgalaup .`
 
 ## Add Container in GNS3
 
