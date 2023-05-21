@@ -1,5 +1,7 @@
 # Part 2: Discovering a VXLAN
 
+
+
 ## Create the network device
 
 ## Connect all device together
@@ -124,4 +126,4 @@ Create the bridge and connect the VXLAN and the physical device with command abo
 
 ## Souces
 - [Youtube VXLAN (Network Direction)](https://www.youtube.com/watch?v=YNqKDI_bnPM&list=PLDQaRcbiSnqFe6pyaSy-Hwj8XRFPgZ5h8)
-- [A blog avilable in french/english is for ](https://vincent.bernat.ch/en/blogn)
+- [A blog available in french/english is for ](https://vincent.bernat.ch/en/blogn)
