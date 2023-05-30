@@ -13,7 +13,7 @@ The ASN is delivered to the different entities by a RIR (Regional Internet Regis
 The RIRs get their IP addresses and AS numbers from IANA (Internet Assigned Numbers Authority) which is in charge of their distribution at the global level.
 
 ### IGP
-Routing inside an autonomous system is called Interior Gateway Protocol (IGP). The most common IGPs are RIP, OSPF, IS-IS, and EIGRP.
+Routing inside an autonomous system is called Interior Gateway Protocol (IGP). The most common IGPs are RIP, OSPF, IS-IS.
 
 ### EGP
 Routing between autonomous systems is called Exterior Gateway Protocol (EGP). The most common EGP is BGP.
@@ -42,17 +42,17 @@ The bgp protocols open port 179. other routers can connect to this port to excha
 
 the bgp have long time of convergence. the convergence is the time to update the routing table after a change in the network topology.
 
-
-### EVPN
-EVPN is a new Ethernet VPN standard that is designed to provide a scalable and efficient way to extend Layer 2* networks across multiple sites.
-
-* Layer 2 is the second layer of the OSI model. It is the data link layer, which is responsible for the physical transmission of data over a network.
+#### BGP-EVPN
+BGP-EVPN is a BGP extension that provides a control plane for VXLAN. BGP-EVPN is used to advertise MAC addresses and IP addresses between VTEPs.
 
 ### VXLAN
 Virtual Extensible LAN (VXLAN) is a network virtualization technology that attempts to address the scalability problems associated with large cloud computing deployments.
 
-### VNI (VXLAN Network Identifier)
+#### VNI (VXLAN Network Identifier)
 VXLAN Network Identifier (VNI) is a 24-bit segment ID that is used to identify VXLAN segments. The VNI is similar to a VLAN ID in that it is used to isolate traffic from different segments. The VNI is also known as the VXLAN segment ID.
+
+#### VTEP (VXLAN Tunnel Endpoint)
+The VXLAN Tunnel Endpoint (VTEP) is a logical entity that terminates a VXLAN tunnel. The VTEP is responsible for encapsulating and de-encapsulating Ethernet packets into and from VXLAN packets. each build a mapping table between the VNI and the MAC address of the host connected to the VTEP.
 
 ### Zebra (protocol)
 Zebra Protocol is used by protocol daemons to communicate with the zebra daemon.
