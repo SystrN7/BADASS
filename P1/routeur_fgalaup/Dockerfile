@@ -4,6 +4,7 @@ FROM frrouting/frr:latest
 # Copy the daemons config file to the container (this file start BGPD, OSPFD, ISISD)
 COPY ./deamons.config /etc/frr/daemons
 
+RUN touch /etc/frr/vtysh.conf
 RUN touch /etc/frr/zebra.conf
 RUN touch /etc/frr/bgpd.conf
 RUN touch /etc/frr/ospfd.conf

@@ -34,7 +34,7 @@ It accomplishes this by determining the best route for data through a Packet-swi
 
 Border Gateway Protocol (BGP) is a standardized protocol designed to exchange routing and reachability information among autonomous systems (AS) on the Internet.
 
-
+#### Route reflector
 To reduce the number of connection between routers the gbp router can be aggregated with a "central" router with the responsibility to redistribute the routes to the other routers. This "central" router is generally called route reflector. for redundancy, it is possible to have multiple route reflectors. A network with a route reflector is called a confederation.
 [source](https://www.nongnu.org/quagga/docs/docs-multi/Route-Server.html#Route-Server).
 

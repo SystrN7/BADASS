@@ -9,12 +9,11 @@ This section will be divided into two sub-sections:
  - The second part will involve dynamic configuration using a multicast address (each time a new packet is received by a VTEP with an unknown Mac address as its destination, the VTEP will send a multicast message to all the other VTEPs present on this multicast).
 
 
-## Create the network structure (router switch host and link)
+## Create the network structure (router, switch, host and link)
 
 The current network diagram is the following:
 
 ![Network diagram](TODO: add image)
-
 
 ## Configure ip address
 
@@ -161,7 +160,7 @@ ip link set eth1 master br0
 ```
 
 
-## Souces
+## Sources
 - [Tuto for project part 2](https://www.youtube.com/watch?v=u1ka-S6F9UI&t=2s)
 - [Youtube VXLAN (Network Direction)](https://www.youtube.com/watch?v=YNqKDI_bnPM&list=PLDQaRcbiSnqFe6pyaSy-Hwj8XRFPgZ5h8)
 - [A blog available in french/english is for ](https://vincent.bernat.ch/en/blogn)
