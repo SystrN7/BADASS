@@ -21,37 +21,30 @@ To enable the various network elements to communicate with each other, we need t
 This configuration is common to both sub-sections.
 
 To set the ip address we use the command `ip address add` with the following syntax:
-`ip address add <ip_address>/<mask dev <interface_name>`
-<!-- TODO check if is necessary (need remove in bottom part if is not required) -->
-We need to give a default gateway to the host with the command :
-`ip route add default via <gateway_ip> dev <interface_name>`
+`ip address add <ip_address>/<mask> dev <interface_name>`
 
 ### Give ip address to router-1
 
 `ip address add 20.1.1.1/24 dev eth0`
-`ip address add 30.1.1.3/24 dev eth1`
 
 ### Give ip address to router-2
 
 `ip address add 20.1.1.2/24 dev eth0`
-`ip address add 30.1.1.3/24 dev eth1`
 
 ### Give ip address to host-1
 
 `ip address add 30.1.1.1/24 dev eth0`
-`ip route add default via 30.1.1.3 dev eth0`
 
 ### Give ip address to host-2
 
 `ip address add 30.1.1.2/24 dev eth0`
-`ip route add default via 30.1.1.3 dev eth0`
 
 
 ## Configure VXLAN
 
 For p2p configuration we need to specify the ip address of the other VTEP.
 ```bash
-ip link add name <name> type vxlan id <vni> remote <destination_ip> local <local_ip> dstport <destination_port> dev <device>
+ip link add name <name> type vxlan id <vni> remote <destination_ip> dstport <destination_port> dev <device>
 ```
 for multicast configuration we need to specify the multicast ip address.
 ```bash
@@ -62,7 +55,7 @@ Explanation of the command:
  - `ip` - Command to manage the network device
  - `link ` - Subcommand to manage the network device.
  - `id ID` - Specifies the VXLAN Network Identifier (VNI) to use.
- - `local IPADDR` - specifies the source IP address to use in outgoing packets.
+ - `local IPADDR` - specifies the source IP address to use in outgoing packets. (optional)
  - `remote IPADDR` - specifies the remote VXLAN tunnel endpoint IP address to use for outgoing packets.
  - `group IPADDR` - specifies the multicast IP address to join. This parameter cannot be specified with the remote parameter. is required for multicast.
  - `dstport PORT` - specifies the UDP destination port to use for outgoing packets. The standard port for VXLAN is 4789.
@@ -79,8 +72,8 @@ We need to create a bridge to connect the VXLAN to the physical network device.
 With ip command :
 ```bash
 ip link add name br0 type bridge # create the bridge with the name br0
-ip link set dev br0 up # start the bridge
-ip link set dev vxlan10 up # start the vxlan
+ip link set br0 up # start the bridge
+ip link set vxlan10 up # start the vxlan
 ip link set vxlan10 master br0 # connect the vxlan to the bridge
 ip link set eth1 master br0 # connect the physical device to the bridge
 ```
@@ -99,10 +92,10 @@ brctl addif br0 eth1 # connect the physical device to the bridge
 
 Create the VXLAN
 ```bash
-ip link add name vxlan10 type vxlan id 10 remote 20.1.1.2 local 20.1.1.1 dstport 4789 dev eth0
+ip link add name vxlan10 type vxlan id 10 remote 20.1.1.2 dstport 4789 dev eth0
 ip link add name br0 type bridge
-ip link set dev br0 up
-ip link set dev vxlan10 up
+ip link set br0 up
+ip link set vxlan10 up
 ip link set vxlan10 master br0
 ip link set eth1 master br0
 ```
@@ -111,10 +104,10 @@ ip link set eth1 master br0
 
 Create the VXLAN
 ```bash
-ip link add name vxlan10 type vxlan id 10 remote 20.1.1.1 local 20.1.1.2 dstport 4789 dev eth0
+ip link add name vxlan10 type vxlan id 10 remote 20.1.1.1 dstport 4789 dev eth0
 ip link add name br0 type bridge
-ip link set dev br0 up
-ip link set dev vxlan10 up
+ip link set br0 up
+ip link set vxlan10 up
 ip link set vxlan10 master br0
 ip link set eth1 master br0
 ```
@@ -139,10 +132,10 @@ Example of output:
 
 Create the VXLAN
 ```bash
-ip link add vxlan10 type vxlan id 10 group 239.1.1.1 dstport 4789 dev eth0
+ip link add name vxlan10 type vxlan id 10 group 239.1.1.1 dstport 4789 dev eth0
 ip link add name br0 type bridge
-ip link set dev br0 up
-ip link set dev vxlan10 up
+ip link set br0 up
+ip link set vxlan10 up
 ip link set vxlan10 master br0
 ip link set eth1 master br0
 ```
@@ -151,10 +144,10 @@ ip link set eth1 master br0
 
 Create the VXLAN
 ```bash
-ip link add vxlan10 type vxlan id 10 group 239.1.1.1 dstport 4789 dev eth0
+ip link add name vxlan10 type vxlan id 10 group 239.1.1.1 dstport 4789 dev eth0
 ip link add name br0 type bridge
-ip link set dev br0 up
-ip link set dev vxlan10 up
+ip link set br0 up
+ip link set vxlan10 up
 ip link set vxlan10 master br0
 ip link set eth1 master br0
 ```
