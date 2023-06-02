@@ -13,7 +13,7 @@ This section will be divided into two sub-sections:
 
 The current network diagram is the following:
 
-![Network diagram](TODO: add image)
+![Network diagram](./network-diagram.png)
 
 ## Configure ip address
 
@@ -112,7 +112,7 @@ ip link set vxlan10 master br0
 ip link set eth1 master br0
 ```
 
-## create VXLAN (Dynamic/Multicast)
+### create VXLAN (Dynamic/Multicast)
 
 The goal of the multicast is to send the packet to all the device in the network. The multicast is a group of device that listen to a specific ip address. When a device send a packet to the multicast ip address all the device in the multicast group receive the packet.
 
