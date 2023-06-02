@@ -33,6 +33,7 @@ configure terminal # Enter in configuration mode
 hostname fgalaup_routeur-1
 no ipv6 forwarding
 !
+# Configure the interfaces (give them an IP address)
 interface eth0
     ip address 10.1.1.1/30
 !
@@ -45,6 +46,7 @@ interface eth2
 interface lo
     ip address 1.1.1.1/32
 !
+# Configure BGP in ASN 1
 router bgp 1
     neighbor ibgp peer-group
     neighbor ibgp remote-as 1
@@ -77,6 +79,7 @@ brctl addif br0 eth1
 vtysh # Use vtysh to configure the router
 configure terminal # Enter in configuration mode
 
+# Configure the interfaces (give them an IP address)
 hostname fgalaup_routeur-2
 no ipv6 forwarding
 !
@@ -88,6 +91,8 @@ interface lo
     ip address 1.1.1.2/32
     ip ospf area 0
 !
+
+# Configure BGP in ASN 1
 router bgp 1
     neighbor 1.1.1.1 remote-as 1
     neighbor 1.1.1.1 update-source lo
