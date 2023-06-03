@@ -76,14 +76,14 @@ And give the name of the services to watchfrr to automatically restart the servi
 FUCK the alternative we use the deprecated image.
 
 You need to build the image with this command:
-`docker build -t routeur_fgalaup .`
+`sudo docker build -t routeur_fgalaup .`
 
 ### Container 2: Host
 
 Is just use the alpine base image with busybox installed.
 
 You need to build the image with this command:
-`docker build -t host_fgalaup .`
+`sudo docker build -t host_fgalaup .`
 
 ## Add Container in GNS3
 
