@@ -18,7 +18,7 @@ An example of a spine-leaf architecture is the following:
 
 The current network diagram is the following:
 
-![Network diagram](TODO: add image)
+![Network diagram](./network-diagram.png)
 
 ### router-1 (Route reflector)
 
@@ -70,9 +70,9 @@ line vty
 ```bash
 # Create the bridge and the vxlan interface
 ip link add br0 type bridge
-ip link set br0 up
+ip link set dev br0 up
 ip link add vxlan10 type vxlan id 10 dstport 4789
-ip link set vxlan10 up
+ip link set dev vxlan10 up
 brctl addif br0 vxlan10
 brctl addif br0 eth1
 
@@ -144,11 +144,10 @@ router ospf
 ### router-4 (leaf 3)
 
 ```bash
-
 ip link add br0 type bridge
-ip link set br0 up
+ip link set dev br0 up
 ip link add vxlan10 type vxlan id 10 dstport 4789
-ip link set vxlan10 up
+ip link set dev vxlan10 up
 brctl addif br0 vxlan10
 brctl addif br0 eth0
 
@@ -182,13 +181,13 @@ router ospf
 
 
 ### host-1
-`ip address add 20.1.1.1/24 dev eth0`
+`ip address add 30.1.1.1/24 dev eth0`
 
 ### host-2
-`ip address add 20.1.1.2/24 dev eth0`
+`ip address add 30.1.1.2/24 dev eth0`
 
 ### host-3
-`ip address add 20.1.1.3/24 dev eth0`
+`ip address add 30.1.1.3/24 dev eth0`
 
 
 ## Sources
