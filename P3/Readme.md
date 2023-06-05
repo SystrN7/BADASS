@@ -179,7 +179,6 @@ router ospf
 
 ```
 
-
 ### host-1
 `ip address add 30.1.1.1/24 dev eth0`
 
@@ -188,6 +187,23 @@ router ospf
 
 ### host-3
 `ip address add 30.1.1.3/24 dev eth0`
+
+
+# Explain configuration (Line by line)
+
+```bash
+hostname <name> # Give an hostname to the machine
+no ipv6 forwarding # Disable ipv6 routing we dont need support for the project
+
+#configuring an network interface
+interface <interface_name>
+    ip address <ip_address>/<mask>
+    ip ospf area <area_id> # Add this interface to ospf area ??? Add more info
+
+# Loopback interface
+
+
+```
 
 
 ## Sources
