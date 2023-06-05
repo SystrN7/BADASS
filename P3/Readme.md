@@ -119,7 +119,7 @@ configure terminal # Enter in configuration mode
 hostname fgalaup_routeur-3
 no ipv6 forwarding
 !
-interface eth1
+interface eth0
     ip address 10.1.1.6/30
     ip ospf area 0
 !
@@ -149,7 +149,7 @@ ip link set dev br0 up
 ip link add vxlan10 type vxlan id 10 dstport 4789
 ip link set dev vxlan10 up
 brctl addif br0 vxlan10
-brctl addif br0 eth0
+brctl addif br0 eth1
 
 vtysh # Use vtysh to configure the router
 configure terminal # Enter in configuration mode
@@ -157,7 +157,7 @@ configure terminal # Enter in configuration mode
 hostname fgalaup_routeur-4
 no ipv6 forwarding
 !
-interface eth2
+interface eth0
     ip address 10.1.1.10/30
     ip ospf area 0
 !
