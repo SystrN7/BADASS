@@ -15,3 +15,8 @@ https://www.cloudflare.com/fr-fr/learning/ddos/glossary/open-systems-interconnec
 # Vxlan
 https://connect.ed-diamond.com/GNU-Linux-Magazine/glmf-198/les-reseaux-logiques-vlans
 https://blog.wescale.fr/les-reseaux-doverlay-principes-et-fonctionnement
+
+http://docs.frrouting.org/en/latest/basic.html#clicmd-write-file
+http://docs.frrouting.org/en/latest/bgp.html#clicmd-neighbor-PEER-update-source-IFNAME-ADDRESS
+http://docs.frrouting.org/en/latest/bgp.html#clicmd-neighbor-WORD-peer-group
+http://docs.frrouting.org/en/latest/bgp.html#clicmd-neighbor-A.B.C.D-activate

@@ -198,11 +198,54 @@ no ipv6 forwarding # Disable ipv6 routing we dont need support for the project
 #configuring an network interface
 interface <interface_name>
     ip address <ip_address>/<mask>
-    ip ospf area <area_id> # Add this interface to ospf area ??? Add more info
+    ip ospf area <area_id> # Add this interface to ospf area 0 ??? Add more info
 
 # Loopback interface
+# A loopback interface is used for device identification. Although you can use any interface address to determine if the device is online. 
+# Network topology changes can remove interfaces or change addresses, but the loopback address never changes.
+
+interface lo
+    ip address <ip_address>/<mask>
+    ip ospf area <area_id> # Add this interface to ospf area ??? Add more info
+
+# Configure BGP in ASN 1
+router bgp 1
+
+    # Config of the route reflector
+
+    neighbor <peer_group_name> peer-group # Create a peer group 
+    neighbor <peer_group_name> remote-as <ASN> # 
+    neighbor <peer_group_name> update-source lo # Use the loopback interface to communicate with the neighbor
+    bgp listen range 1.1.1.0/29 peer-group <peer_group_name> # Accept connections from any peers in the specified prefix. Configuration from the specified peer-group is used to configure these peers
+
+    # Config of the EVPN
+    # Address family is used to configure the BGP to handle a specific network protocol in this case EVPN.
+    # Etch rule inside the address family is used to configure the protocol.
+    address-family l2vpn evpn
+        neighbor ibgp activate # Allow the router to communicate with the neighbor to send BGP-EVPN info (routes)
+        neighbor ibgp route-reflector-client # Add all neighbors as route reflector clients
+    exit-address-family
 
 
+
+    # Config of the route reflector client
+    neighbor <ip_address> remote-as 1 # Add a neighbor in the same AS with loopback address as identifier
+    neighbor <ip_address> update-source lo # Use the loopback interface to communicate with the neighbor (route reflector)
+    
+    # Config of the EVPN
+
+    address-family l2vpn evpn # Configure the address family
+        neighbor <ip_address> activate # Allow the router to communicate with the specified neighbor to send BGP-EVPN info (routes)
+        advertise-all-vni # Advertise all VNI (VXLAN Network Identifier)
+    exit-address-family
+!
+
+# Configure OSPF
+router ospf
+
+router ospf
+    # This command specifies the OSPF enabled interface(s). If the interface has an address from range 192.168.1.0/24 then the command below enables ospf on this interface so router can provide network information to the other ospf routers via this interface.
+    network 0.0.0.0/0 area 0
 ```
 
 
